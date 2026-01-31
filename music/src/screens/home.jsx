@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Header from '../components/Header'
+import Menu from '../components/Menu'
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 
@@ -29,10 +29,10 @@ function Home() {
   }, [pesquisa]);
 
   return (
-    <div>
-      <Header pesquisa={pesquisa} setPesquisa={setPesquisa} />
-
+    <Menu pesquisa={pesquisa} setPesquisa={setPesquisa}>
+      
       <Button onClick={() => setIsDrawerOpen(true)}>Open Drawer</Button>
+      
       <Drawer anchor="left" open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <div style={{ width: 250, padding: 20 }}>
           <button>Histórico</button>
@@ -50,7 +50,7 @@ function Home() {
         </div>
       ))}
 
-    </div>
+    </Menu>
   )
 }
 
