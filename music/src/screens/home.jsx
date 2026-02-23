@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 import Menu from '../components/Menu'
-import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 
 function Home() {
   const [tracks, setTracks] = useState([]);
   const [pesquisa, setPesquisa] = useState('');
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [recetementeOuvida, setRecetementeOuvida] = useState([]);
 
   useEffect(() => {
     if (pesquisa.length > 2) {
@@ -29,23 +28,16 @@ function Home() {
   }, [pesquisa]);
 
   return (
-    <Menu pesquisa={pesquisa} setPesquisa={setPesquisa}>
-      
-      <Button onClick={() => setIsDrawerOpen(true)}>Open Drawer</Button>
-      
-      <Drawer anchor="left" open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <div style={{ width: 250, padding: 20 }}>
-          <button>Histórico</button>
-        </div>
-      </Drawer>
-
+    <Menu pesquisa={pesquisa} setPesquisa={setPesquisa} recentes={recetementeOuvida}>
       {tracks.map(track => (
         <div key={track.id}>
           <img src={track.album.cover_small} alt={track.title} />
           <p>{track.title} - {track.artist.name}</p>
 
-          <audio controls src={track.preview}>
-
+          <audio controls src={track.preview}
+             onPlay={() => {
+               setRecetementeOuvida(prev => prev.find(musica => musica.id === track.id) ? prev : [...prev, track]);
+             }}>
           </audio>
         </div>
       ))}
