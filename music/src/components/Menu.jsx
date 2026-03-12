@@ -45,7 +45,7 @@ export default function Menu({ pesquisa, setPesquisa, recentes = [], children })
           </div>
         </aside>
 
-        <main className="flex-1 bg-white mx-2 p-6 rounded-lg overflow-y-auto">
+        <main className="flex-1 bg-neutral-900 mx-2 p-6 rounded-lg overflow-y-auto">
           {children}
         </main>
       </div>

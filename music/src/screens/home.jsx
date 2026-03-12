@@ -28,20 +28,29 @@ function Home() {
   }, [pesquisa]);
 
   return (
+    
     <Menu pesquisa={pesquisa} setPesquisa={setPesquisa} recentes={recetementeOuvida}>
-      {tracks.map(track => (
-        <div key={track.id}>
-          <img src={track.album.cover_small} alt={track.title} />
-          <p>{track.title} - {track.artist.name}</p>
 
+      <div style={{    height: "600px",
+      overflowY: "scroll"}}>
+      {tracks.map(track => (
+        <div key={track.id} >
+          <div id='musica'>
+            <img src={track.album.cover_small} alt={track.title} />
+              <div id='nomes'>
+                <h4>{track.title}</h4>
+                <p>{track.artist.name}</p>
+              </div>
+          </div>
           <audio controls src={track.preview}
              onPlay={() => {
                setRecetementeOuvida(prev => prev.find(musica => musica.id === track.id) ? prev : [...prev, track]);
              }}>
           </audio>
         </div>
+    
       ))}
-
+     </div>
     </Menu>
   )
 }

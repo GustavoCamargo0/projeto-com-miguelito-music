@@ -8,7 +8,17 @@
   }
 }
 
-p {
-  @apply text-base text-gray-800;
+#musica {
+  display: flex;
+  margin: 5px;
 }
+
+#nomes{
+  display: block;
+  margin: 10px;
+}
+#nomes p{
+  color: gray;
+}
+
 
