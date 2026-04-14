@@ -6,7 +6,7 @@ function Home() {
   const [tracks, setTracks] = useState([]);
   const [pesquisa, setPesquisa] = useState('');
   const [recetementeOuvida, setRecetementeOuvida] = useState([]);
-
+  
   useEffect(() => {
     if (pesquisa.length > 2) {
       const callbackName = "deezerCallback";
@@ -28,29 +28,27 @@ function Home() {
   }, [pesquisa]);
 
   return (
-    
+
     <Menu pesquisa={pesquisa} setPesquisa={setPesquisa} recentes={recetementeOuvida}>
 
-      <div style={{    height: "600px",
-      overflowY: "scroll"}}>
-      {tracks.map(track => (
-        <div key={track.id} >
-          <div id='musica'>
-            <img src={track.album.cover_small} alt={track.title} />
+      <div style={{ height: "470px", overflowY: "scroll" }}>
+        {tracks.map(track => (
+          <div key={track.id} >
+            <div id='musica'>
+              <img src={track.album.cover_small} alt={track.title} />
               <div id='nomes'>
                 <h4>{track.title}</h4>
                 <p>{track.artist.name}</p>
               </div>
-          </div>
-          <audio controls src={track.preview}
-             onPlay={() => {
-               setRecetementeOuvida(prev => prev.find(musica => musica.id === track.id) ? prev : [...prev, track]);
-             }}>
-          </audio>
-        </div>
-    
-      ))}
-     </div>
+            </div>
+            <audio controls src={track.preview}
+              onPlay={() => {
+                setRecetementeOuvida(prev => prev.find(musica => musica.id === track.id) ? prev : [...prev, track]);
+              }}>
+            </audio>
+            </div>
+        ))}
+      </div>
     </Menu>
   )
 }

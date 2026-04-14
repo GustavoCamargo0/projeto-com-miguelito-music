@@ -29,7 +29,7 @@ export default function Menu({ pesquisa, setPesquisa, recentes = [], children })
             </button>
           </div>
 
-          <div className="flex flex-col gap-2 w-full text-white">
+          <div className="flex flex-col gap-2 w-full text-white overflow-y-scroll h-107">
             {recentes.length === 0 && (
               <p className="text-zinc-500 text-sm text-center mt-4">Nenhuma música ouvida ainda</p>
             )}
